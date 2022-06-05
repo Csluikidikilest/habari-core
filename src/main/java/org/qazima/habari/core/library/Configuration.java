@@ -1,32 +1,95 @@
 package org.qazima.habari.core.library;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.databind.JsonNode;
+import org.qazima.habari.pluginsystem.interfaces.IPlugin;
+
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class Configuration {
-    private Map<String, String> _availablePlugins = new HashMap<>();
-    private int _defaultPageSize = 50;
-    private boolean _isDeleteAllowed = false;
-    private boolean _isGetAllowed = false;
-    private boolean _isPostAllowed = false;
-    private boolean _isPutAllowed = false;
-    //private List<IPlugin> Plugins = new ArrayList<>();
-    private List<Server> _servers = new ArrayList<>();
+    private final List<AvailableConnection> availableConnections = new ArrayList<>();
+    private final List<IPlugin> connections = new ArrayList<>();
+    private final List<Server> servers = new ArrayList<>();
+    private int defaultPageSize = 50;
+    private boolean deleteAllowed = false;
+    private boolean getAllowed = true;
+    private boolean postAllowed = false;
+    private boolean putAllowed = false;
 
-    public Map<String, String> availablePlugins() { return _availablePlugins; }
-    public int defaultPageSize() { return _defaultPageSize; }
-    public boolean isDeleteAllowed() { return _isDeleteAllowed; };
-    public boolean isGetAllowed() { return _isGetAllowed; };
-    public boolean isPostAllowed() { return _isPostAllowed; };
-    public boolean isPutAllowed() { return _isPutAllowed; };
-    public List<Server> servers() { return _servers; }
+    public void load(JsonNode node) {
+        setDefaultPageSize(NodeExtension.get(node,"defaultPageSize",0));
+        setDeleteAllowed(NodeExtension.get(node,"allowDelete",false));
+        setGetAllowed(NodeExtension.get(node,"allowGet",false));
+        setPostAllowed(NodeExtension.get(node,"allowPost",false));
+        setPutAllowed(NodeExtension.get(node,"allowPut",false));
+        Iterator<JsonNode> availableConnectionsIterator = NodeExtension.getElements(node,"availableConnections");
+        while (availableConnectionsIterator.hasNext()) {
+            JsonNode availableConnectionNode = availableConnectionsIterator.next();
+            AvailableConnection availableConnection = new AvailableConnection();
+            availableConnection.load(availableConnectionNode);
+            getAvailableConnections().add(availableConnection);
+        }
+        Iterator<JsonNode> serversIterator = NodeExtension.getElements(node,"servers");
+        while (serversIterator.hasNext()) {
+            JsonNode serverNode = serversIterator.next();
+            Server server = new Server();
+            server.load(serverNode);
+            getServers().add(server);
+        }
+    }
 
-    protected void defaultPageSize(int value) { _defaultPageSize = value; };
-    protected void isDeleteAllowed(boolean value) { _isDeleteAllowed = value; };
-    protected void isGetAllowed(boolean value) { _isGetAllowed = value; };
-    protected void isPostAllowed(boolean value) { _isPostAllowed = value; };
-    protected void isPutAllowed(boolean value) { _isPutAllowed = value; };
-    protected void isPutAllowed(List<Server> value) { _servers = value; };
+    public List<AvailableConnection> getAvailableConnections() {
+        return availableConnections;
+    }
+
+    public List<IPlugin> getConnections() {
+        return connections;
+    }
+
+    public int getDefaultPageSize() {
+        return defaultPageSize;
+    }
+
+    private void setDefaultPageSize(int defaultPageSize) {
+        this.defaultPageSize = defaultPageSize;
+    }
+
+    public boolean isDeleteAllowed() {
+        return deleteAllowed;
+    }
+
+    private void setDeleteAllowed(boolean deleteAllowed) {
+        this.deleteAllowed = deleteAllowed;
+    }
+
+    public boolean isGetAllowed() {
+        return getAllowed;
+    }
+
+    private void setGetAllowed(boolean getAllowed) {
+        this.getAllowed = getAllowed;
+    }
+
+    public boolean isPostAllowed() {
+        return postAllowed;
+    }
+
+    private void setPostAllowed(boolean postAllowed) {
+        this.postAllowed = postAllowed;
+    }
+
+    public boolean isPutAllowed() {
+        return putAllowed;
+    }
+
+    private void setPutAllowed(boolean putAllowed) {
+        this.putAllowed = putAllowed;
+    }
+
+    public List<Server> getServers() {
+        return servers;
+    }
 }

@@ -1,35 +1,41 @@
 {
   "configurations": [
     {
-      "allowSelect": true,
-      "allowInsert": false,
-      "allowUpdate": false,
+      "allowGet": true,
+      "allowPost": false,
+      "allowPut": false,
       "allowDelete": false,
       "defaultPageSize": 0,
-      "availablePlugins": [
+      "availableConnections": [
         {
+          "className" : "Habari.PluginSystem.Database",
           "connectionType": "Habari.PluginSystem.Database",
-          "path": ""
+          "url": ""
         },
         {
+          "className" : "Habari.PluginSystem.OData",
           "connectionType": "Habari.PluginSystem.OData",
-          "path": ""
+          "url": ""
         },
         {
+          "className" : "Habari.PluginSystem.Mail",
           "connectionType": "Habari.PluginSystem.Mail",
-          "path": ""
+          "url": ""
         },
         {
+          "className" : "Habari.PluginSystem.Template",
           "connectionType": "Habari.PluginSystem.Template",
-          "path": ""
+          "url": ""
         },
         {
+          "className" : "Habari.PluginSystem.ToCSV",
           "connectionType": "Habari.PluginSystem.ToCSV",
-          "path": ""
+          "url": ""
         },
         {
+          "className" : "Toto.PluginSystem.Picture",
           "connectionType": "Toto.PluginSystem.Picture",
-          "path": ""
+          "url": ""
         }
       ],
       "servers": [
@@ -40,6 +46,24 @@
           "configurationUri": "/config",
           "metadataUri": "/metadata",
           "uri": "/"
+        },
+        {
+          "secured": true,
+          "sslProtocol" : "TLS",
+          "storePassword" : "",
+          "storeProtocol" : "JKS",
+          "keyPassword" : "",
+          "keyManagerProtocol" : "PKIX",
+          "trustManagerProtocol" : "PKIX",
+          "host": "127.0.0.1",
+          "port": 9001,
+          "configurationUri": "/config",
+          "metadataUri": "/metadata",
+          "uri": "/",
+          "certificatesUrls" : [
+            "file://cert1.cert",
+            "file://cert2.cert"
+          ]
         }
       ],
       "connections": [
@@ -63,9 +87,9 @@
           "maxSimultaneousConnections": 10,
           "defaultPageSize": 0,
           "supportTransaction": true,
-          "allowSelect": true,
-          "allowInsert": false,
-          "allowUpdate": false,
+          "allowGet": true,
+          "allowPost": false,
+          "allowPut": false,
           "allowDelete": false,
           "elements": [
             {
