@@ -17,7 +17,7 @@ import java.util.*;
 
 public class ConfigurationManager {
     private final Map<String, Class<IPlugin>> _availablePluginsConnections = new HashMap<>();
-    private Parameter parameter = new Parameter();
+    private final Parameter parameter = new Parameter();
     public Map<String, Class<IPlugin>> availablePluginsConnections() { return _availablePluginsConnections; }
     public List<Configuration> configurations() { return parameter.configurations(); }
 
