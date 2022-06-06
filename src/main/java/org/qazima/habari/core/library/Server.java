@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.sun.net.httpserver.HttpServer;
 import com.sun.net.httpserver.HttpsServer;
+import org.qazima.habari.pluginsystem.extension.NodeExtension;
 
 import java.util.ArrayList;
 import java.util.Iterator;

@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
+import org.qazima.habari.core.Main;
+import org.qazima.habari.pluginsystem.extension.NodeExtension;
 import org.qazima.habari.pluginsystem.interfaces.IPlugin;
 
 import java.io.File;
@@ -12,13 +14,14 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLClassLoader;
 import java.nio.file.Paths;
 import java.util.*;
 
 public class ConfigurationManager {
-    private final Map<String, Class<IPlugin>> _availablePluginsConnections = new HashMap<>();
     private final Parameter parameter = new Parameter();
-    public Map<String, Class<IPlugin>> availablePluginsConnections() { return _availablePluginsConnections; }
     public List<Configuration> configurations() { return parameter.configurations(); }
 
     private ConfigurationManager() { }

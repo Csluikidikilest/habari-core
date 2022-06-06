@@ -2,8 +2,12 @@ package org.qazima.habari.core.library;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.databind.JsonNode;
+import org.qazima.habari.pluginsystem.extension.NodeExtension;
 import org.qazima.habari.pluginsystem.interfaces.IPlugin;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -39,6 +43,11 @@ public class Configuration {
             server.load(serverNode);
             getServers().add(server);
         }
+    }
+
+    public Class<IPlugin> LoadPlugin(AvailableConnection availableConnection) throws MalformedURLException, ClassNotFoundException {
+        URLClassLoader urlClassLoader = new URLClassLoader(new URL[] { new URL(availableConnection.getUrl())}, this.getClass().getClassLoader());
+        return (Class<IPlugin>) Class.forName(availableConnection.getClassName(), true, urlClassLoader);
     }
 
     public List<AvailableConnection> getAvailableConnections() {
