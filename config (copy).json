@@ -1,0 +1,150 @@
+{
+  "configurations": [
+    {
+      "allowGet": true,
+      "allowPost": false,
+      "allowPut": false,
+      "allowDelete": false,
+      "defaultPageSize": 0,
+      "availableConnections": [
+        {
+          "className" : "Habari.PluginSystem.Database",
+          "connectionType": "Habari.PluginSystem.Database",
+          "url": ""
+        },
+        {
+          "className" : "Habari.PluginSystem.OData",
+          "connectionType": "Habari.PluginSystem.OData",
+          "url": ""
+        },
+        {
+          "className" : "Habari.PluginSystem.Mail",
+          "connectionType": "Habari.PluginSystem.Mail",
+          "url": ""
+        },
+        {
+          "className" : "Habari.PluginSystem.Template",
+          "connectionType": "Habari.PluginSystem.Template",
+          "url": ""
+        },
+        {
+          "className" : "Habari.PluginSystem.ToCSV",
+          "connectionType": "Habari.PluginSystem.ToCSV",
+          "url": ""
+        },
+        {
+          "className" : "Toto.PluginSystem.Picture",
+          "connectionType": "Toto.PluginSystem.Picture",
+          "url": ""
+        }
+      ],
+      "servers": [
+        {
+          "secured": false,
+          "host": "127.0.0.1",
+          "port": 9000,
+          "configurationUri": "/config",
+          "metadataUri": "/metadata",
+          "uri": "/"
+        },
+        {
+          "secured": true,
+          "sslProtocol" : "TLS",
+          "storePassword" : "",
+          "storeProtocol" : "JKS",
+          "keyPassword" : "",
+          "keyManagerProtocol" : "PKIX",
+          "trustManagerProtocol" : "PKIX",
+          "host": "127.0.0.1",
+          "port": 9001,
+          "configurationUri": "/config",
+          "metadataUri": "/metadata",
+          "uri": "/",
+          "certificatesUrls" : [
+            "file://cert1.cert",
+            "file://cert2.cert"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "applicationName": "habari",
+          "metadataUri": "^/api/moreth/mysql?$metadata=true$",
+          "restUri": "^/api/moreth/mysql",
+          "connectionType": "Habari.PluginSystem.Database",
+          "databaseEngine": "mysql",
+          "authType": "",
+          "login": "moreth",
+          "password": "toto",
+          "host": "192.168.56.101",
+          "port": 3306,
+          "sslEnabled": "false",
+          "characterSet": "utf8mb4",
+          "collate": "utf8mb4_unicode_ci",
+          "databaseName": "moreth",
+          "instanceName": "",
+          "schemaName": "moreth",
+          "maxSimultaneousConnections": 10,
+          "defaultPageSize": 0,
+          "supportTransaction": true,
+          "allowGet": true,
+          "allowPost": false,
+          "allowPut": false,
+          "allowDelete": false,
+          "elements": [
+            {
+              "defaultPageSize": 50,
+              "metadataUri": "/{objectName}/?$metadata=true",
+              "objectName": "ent.",
+              "objectType": "TABLE|VIEW",
+              "odataUri": "/{objectName}/odata",
+              "restUri": "/{objectName}"
+            }
+          ]
+        },
+        {
+          "metadataUri": "[&?]format=csv",
+          "restUri": "[&?]format=csv",
+          "connectionType": "Habari.PluginSystem.ToCSV"
+        },
+        {
+          "restUri": "^/api/contact",
+          "connectionType": "Habari.PluginSystem.Mail",
+          "asynchronous": false,
+          "bcc": [],
+          "body": "{body}",
+          "cc": [],
+          "enableSsl": true,
+          "from": {
+            "name": "Contact HABARI",
+            "address": "clement.bonet@gmail.com"
+          },
+          "isBodyHtml": false,
+          "replyTo": {
+            "name": "Contact",
+            "address": "contact@habari.com"
+          },
+          "to": [
+            {
+              "name": "{toName}",
+              "address": "{toMail}"
+            }
+          ],
+          "sslProtocols": {
+            "Ssl2": true,
+            "Ssl3": true,
+            "Tls": true,
+            "Tls11": true,
+            "Tls12": true,
+            "Tls13": true
+          },
+          "subject": "mail subjet : {subject}",
+          "host": "smtp.gmail.com",
+          "port": 587,
+          "login": "",
+          "password": ""
+        }
+      ]
+    }
+  ]
+}

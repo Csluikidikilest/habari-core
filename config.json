@@ -8,6 +8,11 @@
       "defaultPageSize": 0,
       "availableConnections": [
         {
+          "className" : "Habari.PluginSystem.Directory",
+          "connectionType": "Habari.PluginSystem.Directory",
+          "url": "file:///home/csluikidikilest/Documents/Development/Java/habari-plugin-directory/out/artifacts/habari_plugin_directory_jar"
+        },
+        {
           "className" : "Habari.PluginSystem.Database",
           "connectionType": "Habari.PluginSystem.Database",
           "url": ""
@@ -68,81 +73,14 @@
       ],
       "connections": [
         {
-          "applicationName": "habari",
-          "metadataUri": "^/api/moreth/mysql?$metadata=true$",
-          "restUri": "^/api/moreth/mysql",
-          "connectionType": "Habari.PluginSystem.Database",
-          "databaseEngine": "mysql",
-          "authType": "",
-          "login": "moreth",
-          "password": "toto",
-          "host": "192.168.56.101",
-          "port": 3306,
-          "sslEnabled": "false",
-          "characterSet": "utf8mb4",
-          "collate": "utf8mb4_unicode_ci",
-          "databaseName": "moreth",
-          "instanceName": "",
-          "schemaName": "moreth",
-          "maxSimultaneousConnections": 10,
-          "defaultPageSize": 0,
-          "supportTransaction": true,
-          "allowGet": true,
-          "allowPost": false,
-          "allowPut": false,
-          "allowDelete": false,
-          "elements": [
-            {
-              "defaultPageSize": 50,
-              "metadataUri": "/{objectName}/?$metadata=true",
-              "objectName": "ent.",
-              "objectType": "TABLE|VIEW",
-              "odataUri": "/{objectName}/odata",
-              "restUri": "/{objectName}"
-            }
-          ]
-        },
-        {
-          "metadataUri": "[&?]format=csv",
-          "restUri": "[&?]format=csv",
-          "connectionType": "Habari.PluginSystem.ToCSV"
-        },
-        {
-          "restUri": "^/api/contact",
-          "connectionType": "Habari.PluginSystem.Mail",
-          "asynchronous": false,
-          "bcc": [],
-          "body": "{body}",
-          "cc": [],
-          "enableSsl": true,
-          "from": {
-            "name": "Contact HABARI",
-            "address": "clement.bonet@gmail.com"
-          },
-          "isBodyHtml": false,
-          "replyTo": {
-            "name": "Contact",
-            "address": "contact@habari.com"
-          },
-          "to": [
-            {
-              "name": "{toName}",
-              "address": "{toMail}"
-            }
-          ],
-          "sslProtocols": {
-            "Ssl2": true,
-            "Ssl3": true,
-            "Tls": true,
-            "Tls11": true,
-            "Tls12": true,
-            "Tls13": true
-          },
-          "subject": "mail subjet : {subject}",
-          "host": "smtp.gmail.com",
-          "port": 587,
-          "login": "",
-          "password": ""
+        "connectionType": "Habari.PluginSystem.Directory",
+        "defaultPages": [
+          "index.htm",
+          "index.html",
+          "default.html"
+        ],
+        "path": "/home/csluikidikilest/Documents/Development/Web/",
+        "restUri": "/"
         }
       ]
     }
