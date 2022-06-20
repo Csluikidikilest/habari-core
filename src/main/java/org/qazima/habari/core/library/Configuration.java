@@ -1,6 +1,5 @@
 package org.qazima.habari.core.library;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.databind.JsonNode;
 import org.qazima.habari.pluginsystem.extension.NodeExtension;
 import org.qazima.habari.pluginsystem.interfaces.IPlugin;
@@ -12,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class Configuration {
     private final List<AvailableConnection> availableConnections = new ArrayList<>();
     private final List<IPlugin> connections = new ArrayList<>();

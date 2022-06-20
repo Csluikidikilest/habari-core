@@ -1,7 +1,5 @@
 package org.qazima.habari.core.library;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.sun.net.httpserver.HttpServer;
 import com.sun.net.httpserver.HttpsServer;
@@ -11,14 +9,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class Server {
     private final List<String> certificatesUrls = new ArrayList<>();
     private String configurationUri = "/config";
     private String host = "127.0.0.1";
-    @JsonIgnoreProperties
     private HttpServer httpServer;
-    @JsonIgnoreProperties
     private HttpsServer httpsServer;
     private String keyManagerProtocol = "";
     private String keyPassword = "";

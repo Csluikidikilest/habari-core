@@ -1,10 +1,8 @@
 package org.qazima.habari.core.library;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.databind.JsonNode;
 import org.qazima.habari.pluginsystem.extension.NodeExtension;
 
-@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class AvailableConnection {
     private String className;
     private String connectionType;

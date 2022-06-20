@@ -3,21 +3,10 @@ package org.qazima.habari.core.library;
 import com.fasterxml.jackson.core.*;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.json.JsonMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import org.qazima.habari.core.Main;
 import org.qazima.habari.pluginsystem.extension.NodeExtension;
-import org.qazima.habari.pluginsystem.interfaces.IPlugin;
 
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLClassLoader;
-import java.nio.file.Paths;
 import java.util.*;
 
 public class ConfigurationManager {
