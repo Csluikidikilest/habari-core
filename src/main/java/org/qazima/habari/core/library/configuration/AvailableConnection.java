@@ -1,4 +1,4 @@
-package org.qazima.habari.core.library;
+package org.qazima.habari.core.library.configuration;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import org.qazima.habari.pluginsystem.extension.NodeExtension;

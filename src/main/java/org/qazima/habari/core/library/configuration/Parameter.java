@@ -1,4 +1,4 @@
-package org.qazima.habari.core.library;
+package org.qazima.habari.core.library.configuration;
 
 import java.util.ArrayList;
 import java.util.List;

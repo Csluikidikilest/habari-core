@@ -8,39 +8,9 @@
       "defaultPageSize": 0,
       "availableConnections": [
         {
-          "className" : "Habari.PluginSystem.Directory",
+          "className": "org.qazima.habari.pluginsystem.directory.Plugin",
           "connectionType": "Habari.PluginSystem.Directory",
-          "url": "file:///home/csluikidikilest/Documents/Development/Java/habari-plugin-directory/out/artifacts/habari_plugin_directory_jar"
-        },
-        {
-          "className" : "Habari.PluginSystem.Database",
-          "connectionType": "Habari.PluginSystem.Database",
-          "url": ""
-        },
-        {
-          "className" : "Habari.PluginSystem.OData",
-          "connectionType": "Habari.PluginSystem.OData",
-          "url": ""
-        },
-        {
-          "className" : "Habari.PluginSystem.Mail",
-          "connectionType": "Habari.PluginSystem.Mail",
-          "url": ""
-        },
-        {
-          "className" : "Habari.PluginSystem.Template",
-          "connectionType": "Habari.PluginSystem.Template",
-          "url": ""
-        },
-        {
-          "className" : "Habari.PluginSystem.ToCSV",
-          "connectionType": "Habari.PluginSystem.ToCSV",
-          "url": ""
-        },
-        {
-          "className" : "Toto.PluginSystem.Picture",
-          "connectionType": "Toto.PluginSystem.Picture",
-          "url": ""
+          "url": "file:///home/csluikidikilest/Documents/Development/Java/habari-plugin-directory/out/artifacts/habari_plugin_directory_jar/habari-plugin-directory.jar"
         }
       ],
       "servers": [
@@ -51,36 +21,20 @@
           "configurationUri": "/config",
           "metadataUri": "/metadata",
           "uri": "/"
-        },
-        {
-          "secured": true,
-          "sslProtocol" : "TLS",
-          "storePassword" : "",
-          "storeProtocol" : "JKS",
-          "keyPassword" : "",
-          "keyManagerProtocol" : "PKIX",
-          "trustManagerProtocol" : "PKIX",
-          "host": "127.0.0.1",
-          "port": 9001,
-          "configurationUri": "/config",
-          "metadataUri": "/metadata",
-          "uri": "/",
-          "certificatesUrls" : [
-            "file://cert1.cert",
-            "file://cert2.cert"
-          ]
         }
       ],
       "connections": [
         {
-        "connectionType": "Habari.PluginSystem.Directory",
-        "defaultPages": [
-          "index.htm",
-          "index.html",
-          "default.html"
-        ],
-        "path": "/home/csluikidikilest/Documents/Development/Web/",
-        "restUri": "/"
+          "connectionType": "Habari.PluginSystem.Directory",
+          "defaultPages": [
+            "index.htm",
+            "index.html",
+            "default.html"
+          ],
+          "path": "/home/csluikidikilest/Documents/Development/Web/",
+          "configurationUri": "/config",
+          "metadataUri": "/metadata",
+          "uri": "/"
         }
       ]
     }
