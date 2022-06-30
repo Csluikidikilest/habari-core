@@ -12,7 +12,7 @@ import java.security.cert.CertificateException;
 public class Main {
      public static void main(String[] args) {
         try {
-            ConfigurationManager.getInstance().loadConfiguration("config.json");
+            ConfigurationManager.getInstance().loadConfiguration(args[0]);
             ConfigurationManager.getInstance().starts();
         } catch (IOException e) {
             throw new RuntimeException(e);

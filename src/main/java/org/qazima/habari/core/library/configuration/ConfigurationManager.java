@@ -23,7 +23,7 @@ public class ConfigurationManager {
 
     private ConfigurationManager() { }
 
-    public void loadConfiguration(String configurationFileName) throws IOException {
+    public void loadConfiguration(String configurationFileName) throws IOException, UnrecoverableKeyException, CertificateException, KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
         ObjectMapper mapper = new ObjectMapper();
         JsonNode node = mapper.readTree(new File(configurationFileName));
         Iterator<JsonNode> configurationsIterator = NodeExtension.getElements(node,"configurations");
@@ -31,6 +31,8 @@ public class ConfigurationManager {
             JsonNode configurationNode = configurationsIterator.next();
             Configuration configuration = new Configuration();
             configuration.load(configurationNode);
+            configuration.configureServers();
+            contentManagers.add(new ContentManager(configuration));
             getConfigurations().add(configuration);
         }
     }
