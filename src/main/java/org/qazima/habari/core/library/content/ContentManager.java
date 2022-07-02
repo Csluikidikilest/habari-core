@@ -12,15 +12,13 @@ import java.nio.charset.StandardCharsets;
 
 public class ContentManager implements HttpHandler {
     private Configuration configuration;
-    private Server server;
 
-    public ContentManager(Configuration configuration, Server server){
+    public ContentManager(Configuration configuration){
         this.configuration = configuration;
-        this.server = server;
-    }
-
-    public void createContent(String path) {
-        this.server.getListener().createContext(path, this);
+        for (Server server :
+                this.configuration.getServers()) {
+            server.getListener().createContext(server.getUri(), this);
+        }
     }
 
     @Override

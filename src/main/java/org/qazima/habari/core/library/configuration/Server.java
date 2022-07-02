@@ -19,15 +19,15 @@ import java.util.List;
 
 public class Server {
     private final List<String> certificatesUrls = new ArrayList<>();
-    private String configurationUri = "/config";
+    private String configurationUri = "/configuration";
     private String host = "127.0.0.1";
     private HttpServer httpServer;
     private HttpsServer httpsServer;
     private String keyFile = "";
     private String keyManagerProtocol = "";
     private String keyPassword = "";
-    private String metadataUri = "/meta";
-    private int port = 8080;
+    private String metadataUri = "/metadata";
+    private int port = 9000;
     private boolean secured = false;
     private String sslProtocol = "";
     private String storePassword = "";

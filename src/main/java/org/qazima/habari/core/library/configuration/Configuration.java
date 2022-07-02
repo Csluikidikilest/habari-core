@@ -1,7 +1,6 @@
 package org.qazima.habari.core.library.configuration;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import org.qazima.habari.core.library.content.ContentManager;
 import org.qazima.habari.pluginsystem.extension.NodeExtension;
 import org.qazima.habari.pluginsystem.interfaces.IPlugin;
 
@@ -23,7 +22,6 @@ import java.util.Optional;
 
 public class Configuration {
     private final List<AvailableConnection> availableConnections = new ArrayList<>();
-    private final List<ContentManager> contentManagers = new ArrayList<>();
     private final List<IPlugin> connections = new ArrayList<>();
     private final List<Server> servers = new ArrayList<>();
     private int defaultPageSize = 50;
@@ -86,10 +84,6 @@ public class Configuration {
         }
     }
 
-    public void generateContentManagers() {
-
-    }
-
     @SuppressWarnings("unchecked")
     public Class<IPlugin> LoadPlugin(AvailableConnection availableConnection) throws MalformedURLException, ClassNotFoundException {
         URLClassLoader urlClassLoader = new URLClassLoader(new URL[]{new URL(availableConnection.getUrl())}, this.getClass().getClassLoader());
@@ -99,8 +93,6 @@ public class Configuration {
     public List<AvailableConnection> getAvailableConnections() {
         return availableConnections;
     }
-
-    //public List<ContentManager> getContentManagers() { return contentManagers; }
 
     public List<IPlugin> getConnections() {
         return connections;
@@ -150,10 +142,17 @@ public class Configuration {
         return servers;
     }
 
-    public void startServers() throws IOException, UnrecoverableKeyException, CertificateException, KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
+    public void configureServers() throws IOException, UnrecoverableKeyException, CertificateException, KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
         for (Server server : getServers()) {
             server.configureListener();
+        }
+    }
+    public void startServers() throws IOException, UnrecoverableKeyException, CertificateException, KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
+        for (Server server : getServers()) {
             server.startListener();
         }
     }
+
+
+
 }
