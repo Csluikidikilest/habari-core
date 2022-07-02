@@ -26,11 +26,11 @@ public class Configuration {
     private final List<Server> servers = new ArrayList<>();
     private int defaultPageSize = 50;
     private boolean deleteAllowed = false;
-    private boolean getAllowed = true;
+    private boolean getAllowed = false;
     private boolean postAllowed = false;
     private boolean putAllowed = false;
 
-    public void load(JsonNode node) {
+    public void load(JsonNode node) throws MalformedURLException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         setDefaultPageSize(NodeExtension.get(node, "defaultPageSize", 0));
         setDeleteAllowed(NodeExtension.get(node, "allowDelete", false));
         setGetAllowed(NodeExtension.get(node, "allowGet", false));
@@ -59,26 +59,12 @@ public class Configuration {
                 item.getConnectionType().equals(connectionType)
             ).findFirst();
             if (availableConnection.isPresent()) {
-                try {
-                    iPluginClass = LoadPlugin(availableConnection.get());
-                    Method method = iPluginClass.getDeclaredMethod("configure", JsonNode.class, int.class, boolean.class, boolean.class, boolean.class, boolean.class);
-                    IPlugin iPlugin = iPluginClass.getDeclaredConstructor().newInstance();
-                    boolean result = (boolean) method.invoke(iPlugin, connectionNode, getDefaultPageSize(), isGetAllowed(), isDeleteAllowed(), isPostAllowed(), isPutAllowed());
-                    if(result) {
-                        getConnections().add(iPlugin);
-                    }
-                } catch (MalformedURLException e) {
-                    throw new RuntimeException(e);
-                } catch (ClassNotFoundException e) {
-                    throw new RuntimeException(e);
-                } catch (NoSuchMethodException e) {
-                    throw new RuntimeException(e);
-                } catch (InstantiationException e) {
-                    throw new RuntimeException(e);
-                } catch (IllegalAccessException e) {
-                    throw new RuntimeException(e);
-                } catch (InvocationTargetException e) {
-                    throw new RuntimeException(e);
+                iPluginClass = LoadPlugin(availableConnection.get());
+                Method method = iPluginClass.getDeclaredMethod("configure", JsonNode.class, int.class, boolean.class, boolean.class, boolean.class, boolean.class);
+                IPlugin iPlugin = iPluginClass.getDeclaredConstructor().newInstance();
+                boolean result = (boolean) method.invoke(iPlugin, connectionNode, getDefaultPageSize(), isGetAllowed(), isDeleteAllowed(), isPostAllowed(), isPutAllowed());
+                if(result) {
+                    getConnections().add(iPlugin);
                 }
             }
         }

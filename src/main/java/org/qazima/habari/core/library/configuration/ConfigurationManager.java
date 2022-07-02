@@ -3,10 +3,12 @@ package org.qazima.habari.core.library.configuration;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.qazima.habari.core.library.content.ContentManager;
+import org.qazima.habari.core.library.logger.LoggerManager;
 import org.qazima.habari.pluginsystem.extension.NodeExtension;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
@@ -23,23 +25,34 @@ public class ConfigurationManager {
 
     private ConfigurationManager() { }
 
-    public void loadConfiguration(String configurationFileName) throws IOException, UnrecoverableKeyException, CertificateException, KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
+    public void loadConfiguration(String configurationFileName) {
         ObjectMapper mapper = new ObjectMapper();
-        JsonNode node = mapper.readTree(new File(configurationFileName));
-        Iterator<JsonNode> configurationsIterator = NodeExtension.getElements(node,"configurations");
-        while (configurationsIterator.hasNext()) {
-            JsonNode configurationNode = configurationsIterator.next();
-            Configuration configuration = new Configuration();
-            configuration.load(configurationNode);
-            configuration.configureServers();
-            contentManagers.add(new ContentManager(configuration));
-            getConfigurations().add(configuration);
+        try {
+            JsonNode node = mapper.readTree(new File(configurationFileName));
+            Iterator<JsonNode> configurationsIterator = NodeExtension.getElements(node, "configurations");
+            while (configurationsIterator.hasNext()) {
+                JsonNode configurationNode = configurationsIterator.next();
+                Configuration configuration = new Configuration();
+                configuration.load(configurationNode);
+                configuration.configureServers();
+                contentManagers.add(new ContentManager(configuration));
+                getConfigurations().add(configuration);
+            }
+        } catch (UnrecoverableKeyException | CertificateException | IOException | KeyStoreException |
+                 NoSuchAlgorithmException | KeyManagementException | ClassNotFoundException |
+                 InvocationTargetException | NoSuchMethodException | InstantiationException | IllegalAccessException e) {
+            LoggerManager.getLogger().fatal(e);
         }
     }
 
-    public void starts() throws IOException, UnrecoverableKeyException, CertificateException, KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
+    public void starts() {
         for (Configuration configuration : getConfigurations()) {
-            configuration.startServers();
+            try {
+                configuration.startServers();
+            } catch (IOException | UnrecoverableKeyException | CertificateException | KeyStoreException |
+                     NoSuchAlgorithmException | KeyManagementException e) {
+                LoggerManager.getLogger().fatal(e);
+            }
         }
     }
 
