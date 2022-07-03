@@ -32,9 +32,9 @@
             "default.html"
           ],
           "path": "/home/csluikidikilest/Documents/Development/Web/",
-          "configurationUri": "/config",
-          "metadataUri": "/metadata",
-          "uri": "/"
+          "configurationUri": "^/config.*",
+          "metadataUri": "^/metadata.*",
+          "uri": "^/.*"
         }
       ]
     }

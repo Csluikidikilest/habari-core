@@ -26,6 +26,7 @@ public class ConfigurationManager {
     private ConfigurationManager() { }
 
     public void loadConfiguration(String configurationFileName) {
+        LoggerManager.getLogger().trace("Loading of ", configurationFileName, ": starting");
         ObjectMapper mapper = new ObjectMapper();
         try {
             JsonNode node = mapper.readTree(new File(configurationFileName));
@@ -38,6 +39,8 @@ public class ConfigurationManager {
                 contentManagers.add(new ContentManager(configuration));
                 getConfigurations().add(configuration);
             }
+            LoggerManager.getLogger().trace("Loading of ", configurationFileName, ": ended");
+
         } catch (UnrecoverableKeyException | CertificateException | IOException | KeyStoreException |
                  NoSuchAlgorithmException | KeyManagementException | ClassNotFoundException |
                  InvocationTargetException | NoSuchMethodException | InstantiationException | IllegalAccessException e) {
