@@ -1,0 +1,42 @@
+{
+  "configurations": [
+    {
+      "allowGet": true,
+      "allowPost": false,
+      "allowPut": false,
+      "allowDelete": false,
+      "defaultPageSize": 0,
+      "availableConnections": [
+        {
+          "className": "org.qazima.habari.pluginsystem.directory.Plugin",
+          "connectionType": "Habari.PluginSystem.Directory",
+          "url": "file:///home/csluikidikilest/Documents/Development/Java/habari-plugin-directory/out/artifacts/habari_plugin_directory_jar/habari-plugin-directory.jar"
+        }
+      ],
+      "servers": [
+        {
+          "secured": false,
+          "host": "0.0.0.0",
+          "port": 9000,
+          "configurationUri": "/config",
+          "metadataUri": "/metadata",
+          "uri": "/"
+        }
+      ],
+      "connections": [
+        {
+          "connectionType": "Habari.PluginSystem.Directory",
+          "defaultPages": [
+            "index.htm",
+            "index.html",
+            "default.html"
+          ],
+          "path": "/home/csluikidikilest/Documents/Development/Web/",
+          "configurationUri": "^/config.*",
+          "metadataUri": "^/metadata.*",
+          "uri": "^/.*"
+        }
+      ]
+    }
+  ]
+}
