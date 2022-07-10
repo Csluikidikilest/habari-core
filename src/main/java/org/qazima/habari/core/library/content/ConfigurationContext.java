@@ -12,10 +12,10 @@ import java.io.OutputStream;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class ConfigureContext implements HttpHandler {
-    private Configuration configuration;
+public class ConfigurationContext implements HttpHandler {
+    private final Configuration configuration;
 
-    public ConfigureContext(Configuration configuration) {
+    public ConfigurationContext(Configuration configuration) {
         this.configuration = configuration;
     }
 

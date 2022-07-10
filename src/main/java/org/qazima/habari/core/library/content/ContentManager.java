@@ -8,6 +8,8 @@ public class ContentManager {
         for (Server server :
                 configuration.getServers()) {
             server.getListener().createContext(server.getUri(), new UriContext(configuration));
+            server.getListener().createContext(server.getMetadataUri(), new MetadataContext(configuration));
+            server.getListener().createContext(server.getConfigurationUri(), new ConfigurationContext(configuration));
         }
     }
 }
